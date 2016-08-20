@@ -20,9 +20,9 @@ parser won't be able to correctly build the expressions.
 
 #Planned Improvements:
 
-Lists and strings support
-More descriptive error handling
-A typed version*
+Markup : *Lists and strings support
+*More descriptive error handling
+*A typed version
 
 #Usage:
 
@@ -34,6 +34,6 @@ Type "grammar" to review it within the command line.
 Type "readme" to review this readme in the command line.
 Type "q" to exit the interpreter.
 "#" denotes inline comments
-$ denotes block comments $*
+$ denotes block comments $
 
 Please report any bugs you find by email!
