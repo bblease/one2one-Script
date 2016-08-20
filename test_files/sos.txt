@@ -1,0 +1,16 @@
+$ a function that calculates the sum of squares up to n $
+begin
+function s(n)
+	begin
+	k = 0
+	i = 0
+	while i < n
+		begin
+		i = i + 1
+		k = k + i * i
+		end
+	k
+	end
+
+	
+end

@@ -1,0 +1,41 @@
+begin
+$ a function that calculates the gcd of a and b $
+function g()
+	begin
+	a
+	b
+	while (a > 0) and (b > 0)
+		begin
+		t = a
+		a = b
+		b = t % b
+		end
+	if (b equals? 0)
+		a
+
+	if (a equals? 0)
+		b
+	end
+
+
+a = 800
+b = 70
+
+function s(n)
+	begin
+	k = 0
+	i = 0
+	while i < n
+		begin
+		i = i + 1
+		k = k + i * i
+		end
+	k
+	end
+
+
+
+print run g()
+print run s(10)
+
+end

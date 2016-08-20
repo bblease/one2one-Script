@@ -1,0 +1,47 @@
+#Author: Ben Blease
+#Various array functions. As of now, no build in arrays are supported in the interpreter
+
+
+begin
+
+$ creates an array of multiples of 3 up to n $
+function a(n){
+	#arrays are pushed onto the stack so must be created backwards
+	for each i from (0 - (n - 1)) to 0
+		if (i % 3) equals? 0
+			0 - i
+}
+
+$ retrieves the kth value in the array pushed by a(n) $
+function g(k){
+	run a(10)
+	u = 0
+	while (u < k){
+		del
+		++u
+	}
+}
+
+$ retrieves the length for the array u$
+#TODO while still not working with empty!!
+
+function l(){
+	m = 1
+	o = 0
+	while m
+	{
+		
+		del
+		if (empty)
+			m = 0
+			++o
+	}
+	o
+	run a(10)
+}
+
+run a(10)
+print run l()
+print run g(1)
+
+end 

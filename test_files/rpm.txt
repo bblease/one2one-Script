@@ -1,0 +1,23 @@
+#A russian peasant multiplication implementation
+begin
+function r()
+	begin
+	n
+	k
+	b = 0
+	while n > 0
+		begin
+		if (n % 2) equals? 1 {
+			b = b + (k * 1) 
+			print k
+		}
+		n = n / 2
+		k = k * 2	
+		end
+	b
+	end
+
+n = 85
+k = 18
+print run r()
+end

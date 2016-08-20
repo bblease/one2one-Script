@@ -1,0 +1,34 @@
+Grammar for one2one Script.
+
+<Number> ::= <Expression> + <Expression>
+<Number> ::= <Expression> - <Expression>
+<Number> ::= <Expression> * <Expression>
+<Number> ::= <Expression> / <Expression>
+<Number> ::= <Expression> % <Expression>
+<Number> ::= <Expression> ^ <Expression>
+
+<Boolean> ::= <Expression> and  <Expression>
+<Boolean> ::= <Expression> or <Expression>
+<Boolean> ::= <Expression> xor <Expression>
+<Boolean> ::= not <Expression>
+<Boolean> ::= <Expression> equals? <Expression>
+<Boolean> ::= <Expression> < <Expression>
+<Boolean> ::= <Expression> > <Expression>
+
+<Program> ::= <Expression>
+<Expression> ::= <Number>
+<Expression> ::= <Boolean>
+<Expression> ::= <Identifier>
+<Expression> ::= <Identifier> = <Expression>
+<Expression> ::= begin <Expression>+(.) end ({ and } may replace begin and end)
+<Expression> ::= if <Boolean> <Expression>
+<Expression> ::= for each <Expression> from <Expression> to <Expression> <Expression>
+<Expression> ::= while <Expression> begin. <Expression> end.
+<Expression> ::= function <Name>(<Identifier>) <Expression>
+<Expression> ::= Run <Expression>
+<Expression> ::= print <Expression>
+<Expression> ::= ++<Expression>
+<Expression> ::= del
+<Expression> ::= top
+<Expression> ::= empty
+<Expression> ::= E

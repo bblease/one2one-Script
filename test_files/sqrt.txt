@@ -1,0 +1,16 @@
+#Author: Ben Blease
+begin
+
+$ Determines the square root of n $
+function s(n){
+	k = ((n^2)+n)/(2*n) #first guess
+	while (not (k ^ 2) equals? n) and (not (k ^ 2) equals? (0 - n))
+		k = ((k^2)+n)/(2*k) #update guess
+	if (k < 0)
+		0 - k 
+	if (k > 0)
+		k
+}
+
+print run s(25000000)
+end
