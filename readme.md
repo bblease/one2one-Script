@@ -20,9 +20,9 @@ parser won't be able to correctly build the expressions.
 
 #Planned Improvements:
 
-Markup : *Lists and strings support
-*More descriptive error handling
-*A typed version
+Lists and strings support.
+More descriptive error handling.
+A typed version.
 
 #Usage:
 
