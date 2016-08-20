@@ -44,7 +44,7 @@ int main(int argc, char* argv[]){
 		}
 
 		else if (file_name.compare("readme") == 0){
-			ifstream readme("./readme.txt");
+			ifstream readme("./readme.md");
 			string rm = "\033[1;36m" + string(istreambuf_iterator<char>(readme), istreambuf_iterator<char>()) + "\033[0m";
 			cout << rm << endl;
 		}
@@ -57,7 +57,7 @@ int main(int argc, char* argv[]){
 
 		else {
 			ifstream input_file(file_name);
-			
+
 			if (!input_file){
 				cerr << "Error: Cannot open file '" << file_name << "'." << endl;
 			}
@@ -65,7 +65,7 @@ int main(int argc, char* argv[]){
 				input_file.exceptions(ifstream::badbit);
 
 				string master = string(istreambuf_iterator<char>(input_file), istreambuf_iterator<char>());
-			
+
 				Interpreter *main;
 				//catch any parsing errors
 				try {
@@ -88,4 +88,4 @@ int main(int argc, char* argv[]){
 		}
 	}
 	return 0;
-}  
+}
