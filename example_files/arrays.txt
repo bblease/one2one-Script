@@ -23,14 +23,13 @@ function g(k){
 }
 
 $ retrieves the length for the array u$
-#TODO while still not working with empty!!
-
+#TODO while still not working with empty
 function l(){
 	m = 1
 	o = 0
 	while m
 	{
-		
+
 		del
 		if (empty)
 			m = 0
@@ -44,4 +43,4 @@ run a(10)
 print run l()
 print run g(1)
 
-end 
+end
