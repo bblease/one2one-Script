@@ -18,10 +18,7 @@ using namespace std;
 */
 Interpreter * initialize(string file){
 	Parser *parser = new Parser();
-	vector<string> scanned = parser->scan(file);
-	vector<Token> token_vec = parser->tokenize(scanned);
-	parser->check_parens(token_vec);
-	Program *program = parser->create_program(token_vec);
+	Program *program = parser->create_program(file);
 	Interpreter *interp = new Interpreter(program);
 	delete parser;
 	return interp;

@@ -48,7 +48,7 @@ struct Token {
 class Parser {
 public:
 	Parser() { }
- 
+
 	~Parser() { }
 
 	/*
@@ -80,7 +80,7 @@ public:
 				s[i] == '{' ||
 				s[i] == '}' ||
 				s[i] == '\t' ||
-				s[i] == '\n' || 
+				s[i] == '\n' ||
 				s[i] == '\r')){
 				//add std::string to output
 				if (focus != ""){
@@ -103,7 +103,7 @@ public:
 				focus += s[i];
 				out.push_back(focus);
 			}else if (!comment && s[i]) {
-				focus += tolower(s[i]);	
+				focus += tolower(s[i]);
 			}else if (i == s.length()-1 || s[i] == '\n' || s[i] == '$'){
 				//comments end at the end of a line or the end of the file
 				comment = false;
@@ -141,7 +141,7 @@ public:
 				t[i].typ == xor_tok ||
 				t[i].typ == check_equal ||
 				t[i].typ == check_lg){
-				if (t[i-1].typ == rightp){ 
+				if (t[i-1].typ == rightp){
 					std::stack<char> open; //determine if expression is correctly traversed
 					for (unsigned int k = i; k >= 0; k--){
 						if (t[k].typ == rightp){
@@ -152,14 +152,14 @@ public:
 						}
 						if (open.empty() && k != i){
 							t.insert(t.begin()+k, t[i]); //move operator
-							t.erase(t.begin()+i+1); //delete operator from former position	
+							t.erase(t.begin()+i+1); //delete operator from former position
 							break;
 						}
 					}
 				} else {
 					Token swap = t[i];
 					t[i] = t[i-1];
-					t[i-1] = swap; 
+					t[i-1] = swap;
 				}
 			}
 		}
@@ -181,7 +181,7 @@ public:
 				//create token
 				Token tk = Token(toks_[s[i]]);
 				out.push_back(tk);
-			} 
+			}
 			//check if the string is a name
 			else if (s[i].length() == 1 && isalpha(s[i][0])) {
 				out.push_back(Token(name_tok, s[i][0]));
@@ -189,11 +189,11 @@ public:
 			//check if the string is an integer
 			else if (iss >> num){
 				out.push_back(Token(int_tok, num));
-			} 
+			}
 			//check if the string is a boolean
 			else if (iss2 >> std::boolalpha >> bol){
 				out.push_back(Token(bool_tok, bol));
-			} 
+			}
 			//check if the string is an operator
 			else if (s[i].length() == 1 && !isalpha(s[i][0])) {
 				if (s[i][0] == '+' ||
@@ -227,7 +227,7 @@ public:
 		for (size_t i = 0; i < p.size(); i++){
 			if (p[i].typ == begin_tok || p[i].typ == leftp){
 				check.push('$');
-			} 
+			}
 			else if (p[i].typ == end_tok || p[i].typ == rightp){
 				if (!check.empty()){
 					check.pop();
@@ -280,16 +280,16 @@ public:
 				eat(rightp, p);
 				break;
 			}
-			
+
 			//build block
 			case begin_tok: {
-				std::vector<Expression*> exps; 
+				std::vector<Expression*> exps;
 				while (p[0].typ != end_tok){
 					Expression *exp = parse(p);
 					exps.push_back(exp);
 				}
 				//tell the interpreter that the expression is concluded on the PTR_STACK
-				exps.push_back(new NullExp()); 
+				exps.push_back(new NullExp());
 				out = new BlockExp(exps);
 				eat(end_tok, p);
 				break;
@@ -314,7 +314,7 @@ public:
 				out = new BoolOp(parse(p), '!');
 				break;
 			}
-			case and_tok: 
+			case and_tok:
 			case or_tok:
 			case xor_tok: {
 				out = new BoolOp(parse(p), parse(p), ops_[t]);
@@ -360,7 +360,7 @@ public:
 				} else {
 					throw NameException();
 				}
-				break;	
+				break;
 			}
 
 			case while_tok: {
@@ -381,7 +381,7 @@ public:
 						if (p[0].typ == name_tok){
 							var = p[0].val;
 							eat(name_tok, p);
-							eat(rightp, p); 
+							eat(rightp, p);
 						} else {
 							eat(rightp, p);
 							var = '\0';
@@ -401,7 +401,7 @@ public:
 			}
 
 			case run_tok: {
-				
+
 				if (p[0].typ == name_tok){
 					char name = p[0].val;
 					eat(p);
@@ -457,8 +457,11 @@ public:
 	*Create the final program for interpretation
 	*Also check if all parentheses are closed.
 	*/
-	Program * create_program(std::vector<Token> p){
-		Program *out = new Program(parse(p));
+	Program * create_program(std::string file){
+		std::vector<std::string> scanned = scan(file);
+		std::vector<Token> tokenized = tokenize(scanned);
+		check_parens(tokenized);
+		Program *out = new Program(parse(tokenized));
 		return out;
 	}
 
@@ -502,5 +505,5 @@ private:
 		{xor_tok, '^'}
 	};
 };
-	
+
 #endif /* PARSER_H_ */
