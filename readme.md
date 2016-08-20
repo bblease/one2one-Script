@@ -33,5 +33,7 @@ The grammar for this language is also included.
 Type "grammar" to review it within the command line.
 Type "readme" to review this readme in the command line.
 Type "q" to exit the interpreter.
+# denotes inline comments
+$ denotes block comments $
 
 Please report any bugs you find by email!
