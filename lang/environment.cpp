@@ -20,7 +20,7 @@ void Environment::extend_env(char var, int val){
 /*
 *Yields the reference index within the environment for provided var
 */
-unsigned int Environment::apply_env(char var){
+size_t Environment::apply_env(char var){
 	return env_[var];
 }
 
@@ -48,7 +48,7 @@ Store::~Store() { }
 /*
 *Returns the current length of the store
 */
-unsigned int Store::get_length(){
+size_t Store::get_length(){
 	return store_.size();
 }
 
@@ -63,7 +63,7 @@ void Store::extend_store(ExpVal* val){
 *Adds variable value to the store
 *Used if variable is already present
 */
-void Store::extend_store(unsigned int ref, ExpVal* val){
+void Store::extend_store(size_t ref, ExpVal* val){
 	if (ref >= store_.size()){
 		extend_store(val);
 	}else{
@@ -74,7 +74,7 @@ void Store::extend_store(unsigned int ref, ExpVal* val){
 /*
 *Returns the value to a variable in the store
 */
-ExpVal * Store::apply_store(unsigned int i){
+ExpVal * Store::apply_store(size_t i){
 	return store_[i];
 }
 
