@@ -157,7 +157,7 @@ void Interpreter::interpret(Expression *exp){
 			char a = stack_get<int>(value_stack_);
 			//if the variable is already in the environment, use
 			if (env_->in_env(a)){
-				unsigned int b = env_->apply_env(a);
+				size_t b = env_->apply_env(a);
 				ExpVal* c = store_->apply_store(b);
 				c->accept(visitor_);
 			} else {
