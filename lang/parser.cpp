@@ -23,13 +23,13 @@ Parser::Parser() { }
 Parser::~Parser() { }
 
 /*
-*Simply splits strings based on delimiting characters
+*Simply splits std::strings based on delimiting characters
 */
 std::vector<std::string> Parser::scan(std::string s){
 	std::vector<std::string> out;
 	bool comment = false;
 	std::string focus;
-	for (unsigned int i = 0; i < s.length(); i++){
+	for (size_t i = 0; i < s.length(); i++){
 		//check if comment
 		if (s[i] == '#' || s[i] == '$'){
 			comment = true;
@@ -53,7 +53,7 @@ std::vector<std::string> Parser::scan(std::string s){
 			s[i] == '\t' ||
 			s[i] == '\n' ||
 			s[i] == '\r')){
-			//add string to output
+			//add std::string to output
 			if (focus != ""){
 				out.push_back(focus);
 			}
@@ -104,7 +104,7 @@ bool Parser::is_ignored(std::string a){
 *May need correction
 */
 void Parser::correct(std::vector<Token> &t){
-	for (unsigned int i = 0; i < t.size(); i++){
+	for (size_t i = 0; i < t.size(); i++){
 		if (t[i].typ == assign_tok ||
 			t[i].typ == num_ops ||
 			t[i].typ == and_tok ||
@@ -114,7 +114,7 @@ void Parser::correct(std::vector<Token> &t){
 			t[i].typ == check_lg){
 			if (t[i-1].typ == rightp){
 				std::stack<char> open; //determine if expression is correctly traversed
-				for (unsigned int k = i; k >= 0; k--){
+				for (size_t k = i; k >= 0; k--){
 					if (t[k].typ == rightp){
 						open.push('$');
 					}
@@ -137,12 +137,12 @@ void Parser::correct(std::vector<Token> &t){
 }
 
 /*
-*Tokenizes delimited string resulting from scan
+*Tokenizes delimited std::string resulting from scan
 *May need revisions, currently inefficient
 */
 std::vector<Token> Parser::tokenize(std::vector<std::string> s){
 	std::vector<Token> out;
-	for (unsigned int i = 0; i < s.size(); i++){
+	for (size_t i = 0; i < s.size(); i++){
 		int num;
 		bool bol;
 		//iss for ints iss2 for bools
