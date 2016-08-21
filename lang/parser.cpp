@@ -23,7 +23,7 @@ Parser::Parser() { }
 Parser::~Parser() { }
 
 /*
-*Simply splits std::strings based on delimiting characters
+*Simply splits strings based on delimiting characters
 */
 std::vector<std::string> Parser::scan(std::string s){
 	std::vector<std::string> out;
@@ -53,7 +53,7 @@ std::vector<std::string> Parser::scan(std::string s){
 			s[i] == '\t' ||
 			s[i] == '\n' ||
 			s[i] == '\r')){
-			//add std::string to output
+			//add string to output
 			if (focus != ""){
 				out.push_back(focus);
 			}
@@ -137,7 +137,7 @@ void Parser::correct(std::vector<Token> &t){
 }
 
 /*
-*Tokenizes delimited std::string resulting from scan
+*Tokenizes delimited string resulting from scan
 *May need revisions, currently inefficient
 */
 std::vector<Token> Parser::tokenize(std::vector<std::string> s){
