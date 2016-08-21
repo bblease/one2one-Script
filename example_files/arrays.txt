@@ -1,5 +1,5 @@
 #Author: Ben Blease
-#Various array functions. As of now, no build in arrays are supported in the interpreter
+#Various array functions. As of now, no built in arrays are supported in the interpreter
 
 
 begin
