@@ -1,5 +1,5 @@
 /*******************************************************************************
-* Name        : interp.h
+* Name        : interp.cpp
 * Author      : Ben Blease
 * Email       : bblease@stevens.edu
 * Date        : 6/12/16

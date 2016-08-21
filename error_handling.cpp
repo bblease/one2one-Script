@@ -1,5 +1,5 @@
 /******************************************************************************
- * Name        : error_handling.h
+ * Name        : error_handling.cpp
  * Author      : Ben Blease
  * Email       : bblease@stevens.edu
  * Date        : 8/10/16
