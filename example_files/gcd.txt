@@ -21,21 +21,5 @@ function g()
 a = 800
 b = 70
 
-function s(n)
-	begin
-	k = 0
-	i = 0
-	while i < n
-		begin
-		i = i + 1
-		k = k + i * i
-		end
-	k
-	end
-
-
-
 print run g()
-print run s(10)
-
 end
