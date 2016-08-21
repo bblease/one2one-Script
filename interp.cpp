@@ -309,7 +309,7 @@ void Interpreter::interpret(Expression *exp){
 }
 
 /*
-*Initiates interpreter, checks for errors at the end of runtime
+*Initiates interpreter
 */
 void Interpreter::start(){
 	Expression *expr = program_->exp;

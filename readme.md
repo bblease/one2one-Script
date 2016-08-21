@@ -15,8 +15,7 @@ There are no else if/else expressions available.
 No strings or lists are available. However, lists can be implemented within the
 language. Check arrays.txt for examples.
 All variables are global in scope.
-If two run expressions are added, they MUST be enclosed in ( ), otherwise the
-parser won't be able to correctly build the expressions.
+If two run expressions are operated on, they MUST be enclosed in ( ), otherwise the parser won't be able to correctly build the expressions.
 
 #Planned Improvements:
 
