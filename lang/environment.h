@@ -27,7 +27,7 @@ public:
 
 	void extend_env(char, int);
 
-	unsigned int apply_env(char);
+	size_t apply_env(char);
 
 	bool in_env(char);
 
@@ -44,13 +44,13 @@ public:
 
 	~Store();
 
-	unsigned int get_length();
+	size_t get_length();
 
 	void extend_store(ExpVal*);
 
-	void extend_store(unsigned int, ExpVal*);
+	void extend_store(size_t, ExpVal*);
 
-	ExpVal * apply_store(unsigned int);
+	ExpVal * apply_store(size_t);
 
 private:
 	std::vector<ExpVal*> store_;
