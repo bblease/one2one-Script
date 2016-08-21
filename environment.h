@@ -11,20 +11,108 @@
 #include "expression.h"
 #include <map>
 
-struct ExpVal;
+struct ExpVal {
+	virtual void accept(Visitor &v) = 0;
 
-class Environment;
+	virtual int get_bc() = 0;
+};
 
-class Store;
+//variable environment
+//as it stands, all variables are global in scope TODO
+class Environment{
+public:
+	Environment();
 
-struct Closure;
+	~Environment();
 
-struct NumVal;
+	void extend_env(char, int);
 
-struct BoolVal;
+	unsigned int apply_env(char);
 
-ExpVal * create_val(int x);
+	bool in_env(char);
 
-ExpVal * create_val(bool x);
+	void print();
+
+private:
+	std::map<char, int> env_;
+};
+
+//variable store
+class Store{
+public:
+	Store();
+
+	~Store();
+
+	unsigned int get_length();
+
+	void extend_store(ExpVal*);
+
+	void extend_store(unsigned int, ExpVal*);
+
+	ExpVal * apply_store(unsigned int);
+
+private:
+	std::vector<ExpVal*> store_;
+};
+
+//Expressed values are Closures, Numbers, and Booleans
+//Values are encapsulated to allow for Closures to be stored within the store.
+
+enum {
+	CLOSURE,
+	NUMVAL,
+	BOOLVAL
+};
+
+struct Closure : ExpVal {
+	char var;
+	Expression *body;
+	Environment *env;
+
+	void accept(Visitor &v){
+		v.visit(*this);
+	}
+
+	int get_bc(){
+		return CLOSURE;
+	}
+
+	explicit Closure(char var, Expression *body, Environment *env): var(var), body(body), env(env) { };
+
+	explicit Closure(Expression *body, Environment *env): body(body), env(env) { };
+};
+
+struct NumVal : ExpVal {
+	int num;
+
+	void accept(Visitor &v){
+		v.visit(*this);
+	}
+
+	int get_bc(){
+		return NUMVAL;
+	}
+
+	explicit NumVal(int num): num(num) {}
+};
+
+struct BoolVal : ExpVal {
+	bool val;
+
+	void accept(Visitor &v){
+		v.visit(*this);
+	}
+
+	int get_bc(){
+		return BOOLVAL;
+	}
+
+	explicit BoolVal(bool val): val(val) {}
+};
+
+ExpVal * create_val(int);
+
+ExpVal * create_val(bool);
 
 #endif /* ENVIRONMENT_H_ */

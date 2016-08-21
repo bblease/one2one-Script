@@ -2,20 +2,44 @@
 #define ERROR_HANDLING_H_
 #include <exception>
 
-class ParseException;
+class ParseException : public std::exception {
+public:
+ virtual const char* parsing_error() const throw() = 0;
+};
 
-class NameException;
+class NameException : public ParseException {
+public:
+ virtual const char* parsing_error() const throw();
+};
 
-class ParenException;
+class ParenException : public ParseException {
+public:
+ virtual const char* parsing_error() const throw();
+};
 
-class ExtraParen;
+ class ExtraParen : public ParseException {
+public:
+ virtual const char* parsing_error() const throw();
+};
 
-class TokenException;
+class TokenException : public ParseException {
+public:
+ virtual const char* parsing_error() const throw();
+};
 
-class SyntaxException;
+class SyntaxException : public ParseException {
+ public:
+ virtual const char* parsing_error() const throw();
+};
 
-class InterpreterException;
+class InterpreterException: public std::exception {
+public:
+ virtual const char* interp_error() const throw() = 0;
+};
 
-class StackError;
+class StackError: public InterpreterException {
+public:
+ virtual const char* interp_error() const throw();
+};
 
  #endif /* ERROR_HANDLING_H_ */

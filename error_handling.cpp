@@ -7,54 +7,26 @@
  ******************************************************************************/
 #include "error_handling.h"
 
-class ParseException : public std::exception {
-public:
- virtual const char* parsing_error() const throw() = 0;
-};
+const char* NameException::parsing_error() const throw() {
+ return "\033[1;31mSyntax Error :\033[0m No name given for function, variable, run.";
+}
 
-class NameException : public ParseException {
-public:
- virtual const char* parsing_error() const throw() {
-   return "\033[1;31mSyntax Error :\033[0m No name given for function, variable, run.";
- }
-};
+const char* ParenException::parsing_error() const throw() {
+ return "\033[1;31mSyntax Error :\033[0m A closing parentheses, bracket, or end statement is missing.";
+}
 
-class ParenException : public ParseException {
-public:
- virtual const char* parsing_error() const throw() {
-   return "\033[1;31mSyntax Error :\033[0m A closing parentheses, bracket, or end statement is missing.";
- }
-};
+const char* ExtraParen::parsing_error() const throw() {
+ return "\033[1;31mSyntax Error :\033[0m An extra closing parentheses, bracket, or end statement is present.";
+}
 
- class ExtraParen : public ParseException {
-public:
- virtual const char* parsing_error() const throw() {
-   return "\033[1;31mSyntax Error :\033[0m An extra closing parentheses, bracket, or end statement is present.";
- }
-};
+const char* TokenException::parsing_error() const throw() {
+ return "\033[1;31mSyntax Error :\033[0m Unknown token.";
+}
 
-class TokenException : public ParseException {
-public:
- virtual const char* parsing_error() const throw() {
-   return "\033[1;31mSyntax Error :\033[0m Unknown token.";
- }
-};
+const char* SyntaxException::parsing_error() const throw() {
+ return "\033[1;31mSyntax Error :\033[0m There's an error in your syntax.";
+}
 
-class SyntaxException : public ParseException {
- public:
- virtual const char* parsing_error() const throw() {
-   return "\033[1;31mSyntax Error :\033[0m There's an error in your syntax.";
- }
-};
-
-class InterpreterException: public std::exception {
-public:
- virtual const char* interp_error() const throw() = 0;
-};
-
-class StackError: public InterpreterException {
-public:
- virtual const char* interp_error() const throw() {
-   return "\033[1;31mStack Error :\033[0m missing expected number or expression.";
- }
-};
+const char* StackError::interp_error() const throw() {
+ return "\033[1;31mStack Error :\033[0m missing expected number or expression.";
+}
