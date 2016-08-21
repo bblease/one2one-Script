@@ -75,8 +75,6 @@ private:
 	//pair RESERVED WORDS with tokens
 	std::map<std::string, tok> toks_ = {
 		{"if", if_tok},
-		{"elif", else_if_tok},
-		{"else", else_tok},
 		{"for", for_tok},
 		{"while", while_tok},
 		{"function", func},

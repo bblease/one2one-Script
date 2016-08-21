@@ -41,13 +41,13 @@ int main(int argc, char* argv[]){
 		}
 
 		else if (file_name.compare("readme") == 0){
-			ifstream readme("./readme.md");
+			ifstream readme("../readme.md");
 			string rm = "\033[1;36m" + string(istreambuf_iterator<char>(readme), istreambuf_iterator<char>()) + "\033[0m";
 			cout << rm << endl;
 		}
 
 		else if (file_name.compare("grammar") == 0){
-			ifstream grammar("./grammar.txt");
+			ifstream grammar("../grammar.txt");
 			string g = "\033[1;36m" + string(istreambuf_iterator<char>(grammar), istreambuf_iterator<char>()) + "\033[0m";
 			cout << g << endl;
 		}
