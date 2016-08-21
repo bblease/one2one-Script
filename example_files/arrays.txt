@@ -29,7 +29,6 @@ function l(){
 	o = 0
 	while m
 	{
-
 		del
 		if (empty)
 			m = 0

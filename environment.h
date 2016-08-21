@@ -11,162 +11,20 @@
 #include "expression.h"
 #include <map>
 
-struct ExpVal {
-	virtual void accept(Visitor &v) = 0;
+struct ExpVal;
 
-	virtual int get_bc() = 0;
-};
+class Environment;
 
-//variable environment
-//as it stands, all variables are global in scope TODO
-class Environment{
-public:
-	Environment() { }
+class Store;
 
-	~Environment() { }
+struct Closure;
 
-	/*
-	*Adds a variable to the environment
-	*/
-	inline void extend_env(char var, int val){
-		env_[var] = val;
-	}
-	
-	/*
-	*Yields the reference index within the environment for provided var
-	*/
-	inline unsigned int apply_env(char var){
-		return env_[var];
-	}
+struct NumVal;
 
-	/*
-	*Yields a boolean determining whether a char is already held within the env
-	*/
-	bool in_env(char var){
-		std::map<char, int>::iterator it;
-		it = env_.find(var);
-		return it != env_.end();
-	}
+struct BoolVal;
 
-	void print(){
-		std::map<char, int>::iterator it;
-		for (it = env_.begin(); it != env_.end(); ++it){
-			std::cout << it->first << " " << it->second << std::endl;
-		}
-		std::cout << std::endl;
-	}
+ExpVal * create_val(int x);
 
-private:
-	std::map<char, int> env_;
-};
-
-//variable store
-class Store{
-public:
-	Store() { }
-
-	~Store() { }
-
-	/*
-	*Returns the current length of the store
-	*/
-	inline unsigned int get_length(){
-		return store_.size();
-	}
-
-	/*
-	*Adds variable value to the store
-	*/
-	inline void extend_store(ExpVal* val){
-		store_.push_back(val);
-	}
-
-	/*
-	*Adds variable value to the store
-	*Used if variable is already present
-	*/
-	void extend_store(unsigned int ref, ExpVal* val){
-		if (ref >= store_.size()){
-			extend_store(val);
-		}else{
-			store_[ref] = val;
-		}	
-	}
-
-	/*
-	*Returns the value to a variable in the store
-	*/
-	inline ExpVal * apply_store(unsigned int i){
-		return store_[i];
-	}
-
-private:
-	std::vector<ExpVal*> store_;
-};
-
-//Expressed values are Closures, Numbers, and Booleans
-//Values are encapsulated to allow for Closures to be stored within the store.
-
-enum {
-	CLOSURE,
-	NUMVAL,
-	BOOLVAL
-};
-
-struct Closure : ExpVal {
-	char var;
-	Expression *body;
-	Environment *env;
-
-	void accept(Visitor &v){
-		v.visit(*this);
-	}
-
-	int get_bc(){
-		return CLOSURE;
-	}
-
-	explicit Closure(char var, Expression *body, Environment *env): var(var), body(body), env(env) { };
-
-	explicit Closure(Expression *body, Environment *env): body(body), env(env) { };
-};
-
-struct NumVal : ExpVal {
-	int num;
-
-	void accept(Visitor &v){
-		v.visit(*this);
-	}
-
-	int get_bc(){
-		return NUMVAL;
-	}
-
-	explicit NumVal(int num): num(num) {}
-};
-
-struct BoolVal : ExpVal {
-	bool val;
-
-	void accept(Visitor &v){
-		v.visit(*this);
-	}
-
-	int get_bc(){
-		return BOOLVAL;
-	}
-
-	explicit BoolVal(bool val): val(val) {}
-};
-
-inline ExpVal * create_val(int x){
-	return new NumVal(x); 
-}
-
-inline ExpVal * create_val(bool x){
-	return new BoolVal(x);
-}
+ExpVal * create_val(bool x);
 
 #endif /* ENVIRONMENT_H_ */
-
-

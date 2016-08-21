@@ -1,6 +1,7 @@
 CXX       = g++
-CPP_FILES = $(wildcard *.cpp)
-OBJS      = $(patsubst %.cpp,%.o,$(CPP_FILES))
+SRC       = top.cpp interp.cpp error_handling.cpp expression.cpp parser.cpp environment.cpp
+HEADERS   = intero.h error_handling.h expression.h parser.h environment.h
+OBJS      = $(SRC:.cpp=.o)
 CXXFLAGS  = -std=c++11 -O2 -Wall -Werror -pedantic-errors -fmessage-length=0
 TARGET    = one2one
 
