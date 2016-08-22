@@ -22,8 +22,7 @@ function g(k){
 	}
 }
 
-$ retrieves the length for the array u$
-#TODO while still not working with empty
+$ retrieves the length for the array u $
 function l(){
 	m = 1
 	o = 0
@@ -38,8 +37,5 @@ function l(){
 	run a(10)
 }
 
-run a(10)
-print run l()
-print run g(1)
-
+#More expression types are needed for deletion, copying, etc.
 end
