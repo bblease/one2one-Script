@@ -30,3 +30,7 @@ const char* SyntaxException::parsing_error() const throw() {
 const char* StackError::interp_error() const throw() {
  return "\033[1;31mStack Error :\033[0m missing expected number or expression.";
 }
+
+const char* VariableError::interp_error() const throw() {
+  return "\033[1;31mVariable Error :\033[0m variable has no value assigned.";
+}

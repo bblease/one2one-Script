@@ -42,4 +42,9 @@ public:
  virtual const char* interp_error() const throw();
 };
 
+class VariableError: public InterpreterException {
+public:
+  virtual const char* interp_error() const throw();
+};
+
  #endif /* ERROR_HANDLING_H_ */

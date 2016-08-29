@@ -157,9 +157,13 @@ void Interpreter::interpret(Expression *exp){
 			char a = stack_get<int>(value_stack_);
 			//if the variable is already in the environment, use
 			if (env_->in_env(a)){
-				size_t b = env_->apply_env(a);
-				ExpVal* c = store_->apply_store(b);
-				c->accept(visitor_);
+				if (store_->apply_store(env_->apply_env(a)) == NULL){
+					throw VariableError();
+				} else {
+					size_t b = env_->apply_env(a);
+					ExpVal* c = store_->apply_store(b);
+					c->accept(visitor_);
+				}
 			} else {
 				//else add to environment and store with place holders
 				env_->extend_env(a, store_->get_length());
@@ -226,9 +230,11 @@ void Interpreter::interpret(Expression *exp){
 			Expression *a = stack_get<Expression*>(exp_stack_);
 			Expression *b = stack_get<Expression*>(exp_stack_);
 			interpret(a);
-			while(stack_get<int>(value_stack_)){
-				interpret(b);
-				interpret(a);
+			if (stack_get<int>(value_stack_)){
+				do {
+					interpret(b);
+					interpret(a);
+				} while(stack_get<int>(value_stack_));
 			}
 			break;
 		}
