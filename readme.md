@@ -2,6 +2,8 @@
 c. 2016 Ben Blease
 bblease@stevens.edu
 
+Check the wiki for full documentation.
+
 A simple interpreted functional programming language written in c++.
 The aim of one2one is to provide an easy to learn language thats capable of
 running mathematical functions.
