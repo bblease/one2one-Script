@@ -23,7 +23,7 @@ Parser::Parser() { }
 Parser::~Parser() { }
 
 /*
-*Simply splits std::strings based on delimiting characters
+*Simply splits strings based on delimiting characters
 */
 std::vector<std::string> Parser::scan(std::string s){
 	std::vector<std::string> out;
