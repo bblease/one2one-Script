@@ -137,7 +137,7 @@ void Parser::correct(std::vector<Token> &t){
 }
 
 /*
-*Tokenizes delimited std::string resulting from scan
+*Tokenizes delimited string resulting from scan
 *May need revisions, currently inefficient
 */
 std::vector<Token> Parser::tokenize(std::vector<std::string> s){
