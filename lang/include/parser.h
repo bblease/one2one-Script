@@ -30,6 +30,7 @@ enum tok {
 
 struct Token {
 	tok typ;
+	//initiate all variables to 0
 	char val = '\0';
 	int num = 0;
 	bool bol = 0;
