@@ -17,6 +17,7 @@ A typed version.
 # Usage
 
 Bash is preferable for usage, whether in Linux or Windows. Cygwin also works.
+
 The makefile is included, run make to build the program.
 Run ./one2one, then specify the .txt file you'd like to run.
 The grammar for this language is also included.
