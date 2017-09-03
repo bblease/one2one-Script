@@ -1,4 +1,4 @@
-#One2one Script v 1.0
+# One2one Script v 1.0
 c. 2016 Ben Blease
 bblease@stevens.edu
 
@@ -8,13 +8,13 @@ A simple interpreted functional programming language written in c++.
 The aim of one2one is to provide an easy to learn language thats capable of
 running mathematical functions.
 
-#Planned Improvements
+# Planned Improvements
 
 Lists and strings support.
 More descriptive error handling.
 A typed version.
 
-#Usage
+# Usage
 
 Bash is preferable for usage, whether in Linux or Windows. Cygwin also works.
 The makefile is included, run make to build the program.
@@ -26,7 +26,7 @@ Type "q" to exit the interpreter.
 "#" denotes inline comments
 $ denotes block comments $
 
-#Limitiations
+# Limitiations
 
 Tail recursion has yet to be implemented.
 Currently, numbers are stored as integers, so no floats are supported.
