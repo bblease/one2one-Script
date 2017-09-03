@@ -15,8 +15,8 @@ More descriptive error handling.
 A typed version.
 
 # Usage
-
-
+ 
+ 
 Bash is preferable for usage, whether in Linux or Windows.
 The makefile is included, run make to build the program.
 Run ./one2one, then specify the .txt file you'd like to run.
